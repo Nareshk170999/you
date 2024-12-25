@@ -1,39 +1,31 @@
-// Set the target birthday date for Swathi
-  const birthdayDate = new Date("December 24, 2024 17:00:00").getTime();
+// Set the date for the birthday
+const birthdayDate = new Date("Dec 22, 2024 00:00:00").getTime();
 
+// Countdown Function
 const countdownElement = document.getElementById('countdown');
-const wishesElement = document.getElementById('wishesMessage');
+const countdownContainer = document.getElementById('countdown-container');
+const birthdayMessageElement = document.getElementById('birthday-message');
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const timeRemaining = birthdayDate - now;
+const countdownInterval = setInterval(function () {
+  const now = new Date().getTime();
+  const distance = birthdayDate - now;
 
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-    if (timeRemaining <= 0) {
-        clearInterval(countdownInterval);
-        showBirthdayWishes();
-    }
-}
-
-// Display birthday wishes after countdown ends
-function showBirthdayWishes() {
-    document.getElementById('birthdayMessage').style.display = 'none';
-    wishesElement.style.display = 'block';
-}
-
-// Update countdown every second
-const countdownInterval = setInterval(updateCountdown, 1000);
-
-// Initial countdown update
-updateCountdown();
-
-// Button to refresh the page and celebrate again
-function refreshPage() {
-    location.reload();
-}
+  // Once the countdown is finished, show the birthday message
+  if (distance < 0) {
+    clearInterval(countdownInterval);
+    countdownElement.innerHTML = "🎉 It's your birthday! 🎉";
+    
+    // Hide the countdown container and show the birthday message after a short delay
+    setTimeout(() => {
+      countdownContainer.style.display = 'none'; // Hide the countdown container
+      birthdayMessageElement.style.display = 'block'; // Show the birthday message
+    }, 2000); // Delay before switching
+  }
+}, 1000);

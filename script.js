@@ -1,5 +1,5 @@
 // Set the date for the birthday
-const birthdayDate = new Date("Dec 24, 2024 00:00:00").getTime();
+const birthdayDate = new Date("Dec 26, 2024 00:00:00").getTime();
 
 // Countdown Function
 const countdownElement = document.getElementById('countdown');

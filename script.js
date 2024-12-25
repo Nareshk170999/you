@@ -1,5 +1,5 @@
-// Set the target birthday date
-const birthdayDate = new Date("December 25, 2024 00:00:00").getTime();
+// Set the target birthday date for Swathi
+  const birthdayDate = new Date("December 26, 2024 00:00:00").getTime();
 
 const countdownElement = document.getElementById('countdown');
 const wishesElement = document.getElementById('wishesMessage');

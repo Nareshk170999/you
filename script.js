@@ -1,31 +1,24 @@
-// Set the date for the birthday
-const birthdayDate = new Date("Dec 26, 2024 00:00:00").getTime();
+// Set the date for the countdown (set your desired birthday date)
+const countdownDate = new Date("Dec 22, 2024 00:00:00").getTime();
 
-// Countdown Function
-const countdownElement = document.getElementById('countdown');
-const countdownContainer = document.getElementById('countdown-container');
-const birthdayMessageElement = document.getElementById('birthday-message');
-
-const countdownInterval = setInterval(function () {
+// Update the countdown every second
+const countdownInterval = setInterval(function() {
   const now = new Date().getTime();
-  const distance = birthdayDate - now;
+  const distance = countdownDate - now;
 
+  // Time calculations for days, hours, minutes, and seconds
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  // Display the countdown
+  document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-  // Once the countdown is finished, show the birthday message
+  // If the countdown finishes, show the birthday message
   if (distance < 0) {
-    clearInterval(countdownInterval);
-    countdownElement.innerHTML = "🎉 It's your birthday! 🎉";
-    
-    // Hide the countdown container and show the birthday message after a short delay
-    setTimeout(() => {
-      countdownContainer.style.display = 'none'; // Hide the countdown container
-      birthdayMessageElement.style.display = 'block'; // Show the birthday message
-    }, 2000); // Delay before switching
+    clearInterval(countdownInterval);  // Stop the countdown
+    document.getElementById("countdown-container").style.display = "none";  // Hide countdown
+    document.getElementById("message").style.display = "block";  // Show the message
   }
 }, 1000);

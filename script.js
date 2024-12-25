@@ -1,5 +1,5 @@
 // Set the date for the countdown (set your desired birthday date)
-const countdownDate = new Date("Dec 21, 2024 00:00:00").getTime();
+const countdownDate = new Date("Dec 26, 2024 00:00:00").getTime();
 
 // Update the countdown every second
 const countdownInterval = setInterval(function() {
